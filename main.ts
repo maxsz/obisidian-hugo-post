@@ -10,7 +10,7 @@ import {
   SuggestModal,
   Setting,
 } from "obsidian";
-import moment from "moment";
+import * as moment from "moment";
 
 interface PluginSettings {
   mySetting: string;
