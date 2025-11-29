@@ -1,7 +1,6 @@
 import {
   App,
   Editor,
-  FileSystemAdapter,
   MarkdownView,
   Modal,
   Notice,
@@ -10,7 +9,6 @@ import {
   SuggestModal,
   Setting,
 } from "obsidian";
-import * as moment from "moment";
 
 interface PluginSettings {
   mySetting: string;
@@ -67,7 +65,7 @@ export default class MyPlugin extends Plugin {
 
         try {
           const kindPrefix = postKind == PostKind.Note ? "note-" : "";
-          const datePrefix = moment().format("YYYY-MM-DD-hh-mm");
+          const datePrefix = formatDatePrefix(new Date());
           const folderName = `content/posts/${kindPrefix}${datePrefix}-${postTitle}`;
           const folder = await this.app.vault.createFolder(folderName);
           new Notice(folder.path);
@@ -191,6 +189,16 @@ enum PostKind {
   BlogPost = "blogpost",
   Note = "note",
   Photos = "photos",
+}
+
+function formatDatePrefix(date: Date): string {
+  const pad = (value: number) => value.toString().padStart(2, "0");
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  return `${year}-${month}-${day}-${hours}-${minutes}`;
 }
 
 export class PostKindChooserModal extends SuggestModal<PostKind> {
