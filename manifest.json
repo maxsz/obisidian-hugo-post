@@ -1,0 +1,11 @@
+{
+	"id": "obsidian-hugo-post",
+	"name": "Hugo Post",
+	"version": "0.0.1",
+	"minAppVersion": "0.15.0",
+	"description": "Quickly create Hugo blog posts",
+	"author": "Maximilian Szengel",
+	"authorUrl": "https://apps.szengel.com",
+	"fundingUrl": "https://apps.szengel.com/funding",
+	"isDesktopOnly": false
+}
